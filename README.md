@@ -104,7 +104,7 @@ Duty = (500 / 1000) × 100 = 50%
 - PWM frekansı sabit kalır (1 kHz)
 
 # Demo Video
-
+https://youtube.com/shorts/S2uTLoAouIY
 
 # Documentation
 1. STM32F407 Reference manual
