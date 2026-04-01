@@ -38,6 +38,37 @@ int main(void)
   int i;
   while (1)
   {
+	  /*
+	   * UPDATE EVENT (UG BIT) KULLANIMI HAKKINDA NOT
+	   *
+	   * TIM1->EGR register’ındaki UG (Update Generation) biti, timer register’larının
+	   * senkronize şekilde güncellenmesini sağlamak için kullanılır.
+	   *
+	   * UG biti set edildiğinde:
+	   *  - PSC, ARR ve CCRx gibi preload register’lar aktif register’lara aktarılır
+	   *  - CNT (counter) sıfırlanır
+	   *  - Update Event (UEV) tetiklenir
+	   *
+	   * UG bitinin while döngüsü içinde sürekli set edilmesine gerek yoktur.
+	   * Genellikle sadece:
+	   *  - Timer ilk başlatılırken
+	   *  - Konfigürasyon sonrası ilk senkronizasyon için
+	   * bir kez set edilmesi yeterlidir.
+	   *
+	   * NEDEN TEKRAR SET ETMEYE GEREK YOK?
+	   *
+	   * Timer çalışma sırasında zaten kendi update mekanizmasına sahiptir:
+	   *
+	   *  - CNT, ARR değerine ulaştığında (overflow)
+	   *  - veya downcounting modunda 0’a ulaştığında (underflow)
+	   * otomatik olarak Update Event (UEV) oluşur.
+	   *
+	   * Bu olay:
+	   *  - preload register’ların güncellenmesini sağlar
+	   *  - update flag’i set eder
+	   */
+
+	  
 	  // Duty cycle azaltma döngüsü
 	  // CCR1 değeri azaldıkça LED parlaklığı azalır
 	  for(i=999; i>0; i--){
